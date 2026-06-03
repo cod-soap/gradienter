@@ -1,0 +1,162 @@
+/* universal-level.wxss - 万向水平仪页面样式 */
+@import '../../styles/variables.wxss';
+@import '../../styles/mixins.wxss';
+
+/* ---- 页面根容器 ---- */
+.page {
+  min-height: 100vh;
+  background-color: var(--color-bg-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8rpx 24rpx;
+  /* 底部为双行工具栏留出空间 */
+  padding-bottom: calc(180rpx + 40rpx + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+}
+
+/* ---- 罗盘区域 ---- */
+.dial-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  /* 不使用flex:1居中，让内容自然从顶部向下排列 */
+  min-height: 0;
+}
+
+/* 罗盘容器：正方形，宽度占 86% 屏宽 */
+.dial-container {
+  width: 86vw;
+  height: 86vw;
+  max-width: 640rpx;
+  max-height: 640rpx;
+}
+
+/* ---- 水平状态标签 ---- */
+.level-badge {
+  /* 负margin吃掉罗盘canvas内部底部空白，让badge紧贴罗盘视觉边缘 */
+  margin-top: 62rpx;
+  padding: 8rpx 32rpx 30rpx;
+  border-radius: 40rpx;
+  background-color: rgba(255, 23, 68, 0.15);
+  border: 1.5rpx solid rgba(255, 23, 68, 0.4);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.0;
+}
+
+.level-badge--ok {
+  background-color: rgba(0, 230, 118, 0.12);
+  border-color: rgba(0, 230, 118, 0.4);
+}
+
+.level-badge__text {
+  font-size: var(--font-size-label);
+  color: var(--color-accent-red);
+  letter-spacing: 2rpx;
+  white-space: nowrap;
+}
+
+.level-badge--ok .level-badge__text {
+  color: var(--color-accent-green);
+}
+
+/* ---- 角度数值区域 ---- */
+.data-section {
+  width: 100%;
+  margin-top: 60rpx;
+  margin-bottom: 4rpx;
+}
+
+/* ---- 底部工具栏（双行布局，避免按钮拥挤换行） ---- */
+.toolbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--color-bg-secondary);
+  border-top: 1rpx solid var(--color-line-primary);
+  padding: 12rpx 24rpx;
+  padding-bottom: calc(12rpx + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+  z-index: 100;
+}
+
+/* 工具栏行 */
+.toolbar__row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12rpx;
+}
+
+/* ---- 记录按钮 ---- */
+.record-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+  padding: 12rpx 0;
+  border-radius: var(--radius-sm);
+  border: 1.5rpx solid var(--color-line-primary);
+  background-color: var(--color-bg-tertiary);
+  transition: all 150ms ease;
+}
+
+.record-btn--hover {
+  transform: scale(0.95);
+  opacity: 0.8;
+}
+
+.record-btn__icon {
+  font-size: 18rpx;
+  color: var(--color-accent-red);
+  line-height: 1;
+}
+
+.record-btn__label {
+  font-size: var(--font-size-tip);
+  color: var(--color-text-accent);
+  font-family: var(--font-mono);
+  letter-spacing: 1rpx;
+}
+
+/* ---- 我的记录按钮 ---- */
+.records-nav-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+  padding: 12rpx 0;
+  border-radius: var(--radius-sm);
+  border: 1.5rpx solid var(--color-accent-blue);
+  background-color: rgba(41, 121, 255, 0.1);
+  transition: all 150ms ease;
+}
+
+.records-nav-btn--hover {
+  transform: scale(0.95);
+  opacity: 0.8;
+}
+
+.records-nav-btn__icon {
+  font-size: var(--font-size-tip);
+  color: var(--color-accent-blue);
+  line-height: 1;
+}
+
+.records-nav-btn__label {
+  font-size: var(--font-size-tip);
+  color: var(--color-text-accent);
+  font-family: var(--font-mono);
+  letter-spacing: 1rpx;
+}

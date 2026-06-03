@@ -1,0 +1,72 @@
+<!-- universal-level.wxml - 万向水平仪页面 -->
+<!-- 360°罗盘表盘 + X/Y 角度数值 + 校准/灵敏度/记录工具栏 -->
+
+<view class="page">
+
+  <!-- ====== 罗盘区域 ====== -->
+  <view class="dial-section">
+    <view class="dial-container">
+      <compass-dial
+        angleX="{{angleX}}"
+        angleY="{{angleY}}"
+      ></compass-dial>
+    </view>
+
+    <!-- 水平状态提示标签（带emoji增强辨识度） -->
+    <view class="level-badge {{(angleX * angleX + angleY * angleY) < 1 ? 'level-badge--ok' : ''}}">
+      <text class="level-badge__text">
+        {{(angleX * angleX + angleY * angleY) < 1 ? '✅ 水平' : '📐 倾斜中'}}
+      </text>
+    </view>
+  </view>
+
+  <!-- ====== 角度数值显示 ====== -->
+  <view class="data-section">
+    <angle-display
+      angleX="{{angleY}}"
+      angleY="{{angleX}}"
+      precision="{{3}}"
+    ></angle-display>
+  </view>
+
+  <!-- ====== 底部工具栏（两行布局，避免拥挤） ====== -->
+  <view class="toolbar">
+    <!-- 第一行：校准 + 灵敏度 -->
+    <view class="toolbar__row">
+      <calibrate-button
+        isCalibrated="{{isCalibrated}}"
+        bind:calibrate="onCalibrate"
+        bind:reset="onResetCalibration"
+      ></calibrate-button>
+
+      <sensitivity-picker
+        value="{{sensitivity}}"
+        bind:change="onSensitivityChange"
+      ></sensitivity-picker>
+    </view>
+
+    <!-- 第二行：记录 + 我的记录 -->
+    <view class="toolbar__row">
+      <view
+        class="record-btn"
+        hover-class="record-btn--hover"
+        hover-stay-time="100"
+        bind:tap="onRecord"
+      >
+        <text class="record-btn__icon">●</text>
+        <text class="record-btn__label">记录角度</text>
+      </view>
+
+      <view
+        class="records-nav-btn"
+        hover-class="records-nav-btn--hover"
+        hover-stay-time="100"
+        bind:tap="onGoToRecords"
+      >
+        <text class="records-nav-btn__icon">☰</text>
+        <text class="records-nav-btn__label">我的记录</text>
+      </view>
+    </view>
+  </view>
+
+</view>

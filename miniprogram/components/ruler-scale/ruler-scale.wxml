@@ -1,0 +1,7 @@
+<!-- ruler-scale.wxml - 刻度尺组件模板 -->
+<!-- Canvas 2D 绘制物理精准刻度尺，撑满父容器宽度和高度 -->
+<canvas
+  type="2d"
+  id="ruler-canvas"
+  class="ruler-canvas"
+></canvas>

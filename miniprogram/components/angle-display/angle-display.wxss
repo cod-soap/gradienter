@@ -1,0 +1,75 @@
+/* angle-display.wxss - 角度数值展示组件样式 */
+@import '../../styles/variables.wxss';
+
+:host {
+  display: block;
+}
+
+/* 外层容器，横向排列两组角度值 */
+.angle-display {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg-tertiary);
+  border: 1rpx solid var(--color-line-primary);
+  border-radius: var(--radius-sm);
+  padding: 12rpx 32rpx;
+  gap: 0;
+}
+
+/* 单个角度项（标签 + 数值 + 单位） */
+.angle-display__item {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 6rpx;
+  flex: 1;
+  justify-content: center;
+}
+
+/* 轴标签（X / Y） */
+.angle-display__label {
+  font-size: var(--font-size-tip);
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  min-width: 24rpx;
+}
+
+/* 数值（大号等宽字体，接近水平时绿色） */
+.angle-display__value {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-angle-md);
+  color: var(--color-text-accent);
+  min-width: 120rpx;
+  text-align: right;
+  transition: color 200ms ease;
+}
+
+/* 数值颜色状态：水平（绿）、接近（黄）、偏离（红） */
+.angle-display__value--ok {
+  color: var(--color-accent-green);
+}
+
+.angle-display__value--warn {
+  color: var(--color-accent-yellow);
+}
+
+.angle-display__value--error {
+  color: var(--color-accent-red);
+}
+
+/* 单位符号 */
+.angle-display__unit {
+  font-size: var(--font-size-tip);
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+}
+
+/* 中间分隔线 */
+.angle-display__divider {
+  width: 1rpx;
+  height: 40rpx;
+  background-color: var(--color-line-primary);
+  margin: 0 24rpx;
+}

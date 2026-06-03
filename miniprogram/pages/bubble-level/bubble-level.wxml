@@ -1,0 +1,98 @@
+<!-- bubble-level.wxml - 水平气泡尺页面 -->
+<!-- 三合一气泡尺：水平管（内嵌刻度尺）+ 垂直管（侧刻度尺）+ 双向45°管 -->
+
+<view class="page">
+
+  <!-- ====== 水平气泡管 + 内嵌刻度尺（紧贴屏幕顶部） ====== -->
+  <view class="section section--horiz">
+    <text class="section__label">水平</text>
+    <view class="tube-container tube-container--horiz">
+      <bubble-tube
+        direction="horizontal"
+        angle="{{angleX}}"
+        maxAngle="{{MAX_ANGLE}}"
+        showRuler="{{true}}"
+        rulerUnit="{{rulerUnit}}"
+      ></bubble-tube>
+    </view>
+  </view>
+
+  <!-- ====== 下半区：垂直管（左，紧贴屏幕带刻度尺） + 右侧（45°管 + 角度值） ====== -->
+  <view class="section section--lower">
+
+    <!-- 垂直管区域（靠左，带纵向刻度尺，高度尽量填满） -->
+    <view class="vert-area">
+      <text class="section__label section__label--center">垂直</text>
+      <view class="tube-container tube-container--vert">
+        <bubble-tube
+          direction="vertical"
+          angle="{{angleY}}"
+          maxAngle="{{MAX_ANGLE}}"
+          showRuler="{{true}}"
+          rulerUnit="{{rulerUnit}}"
+        ></bubble-tube>
+      </view>
+    </view>
+
+    <!-- 右侧区域：两根45°管（上下排列）+ 角度数值 -->
+    <view class="right-area">
+      <!-- 45°管 - 上 -->
+      <view class="diag-item">
+        <text class="section__label section__label--center">45°</text>
+        <view class="tube-container tube-container--diag">
+          <bubble-tube
+            direction="diagonal"
+            angle="{{angle45}}"
+            maxAngle="{{MAX_ANGLE}}"
+          ></bubble-tube>
+        </view>
+      </view>
+      <!-- 135°管 - 下 -->
+      <view class="diag-item">
+        <text class="section__label section__label--center">135°</text>
+        <view class="tube-container tube-container--diag">
+          <bubble-tube
+            direction="diagonal-reverse"
+            angle="{{angle135}}"
+            maxAngle="{{MAX_ANGLE}}"
+          ></bubble-tube>
+        </view>
+      </view>
+
+      <!-- 角度数值显示 -->
+      <view class="data-area">
+        <angle-display
+          angleX="{{angleX}}"
+          angleY="{{angleY}}"
+          precision="{{1}}"
+        ></angle-display>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- ====== 底部工具栏 ====== -->
+  <view class="toolbar">
+    <calibrate-button
+      isCalibrated="{{isCalibrated}}"
+      bind:calibrate="onCalibrate"
+      bind:reset="onResetCalibration"
+    ></calibrate-button>
+
+    <sensitivity-picker
+      value="{{sensitivity}}"
+      bind:change="onSensitivityChange"
+    ></sensitivity-picker>
+
+    <!-- 刻度单位切换按钮 -->
+    <view
+      class="unit-btn {{rulerUnit === 'cm' ? 'unit-btn--cm' : 'unit-btn--inch'}}"
+      hover-class="unit-btn--hover"
+      hover-stay-time="100"
+      bind:tap="onUnitToggle"
+    >
+      <text class="unit-btn__label">{{rulerUnit}}</text>
+    </view>
+  </view>
+
+</view>

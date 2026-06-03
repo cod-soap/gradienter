@@ -1,0 +1,15 @@
+<!-- angle-display.wxml - 角度数值展示组件 -->
+<!-- 大号等宽字体显示 X/Y 轴角度值 -->
+<view class="angle-display">
+  <view class="angle-display__item">
+    <text class="angle-display__label">X</text>
+    <text class="angle-display__value {{angleXStatus}}">{{angleXStr}}</text>
+    <text class="angle-display__unit">°</text>
+  </view>
+  <view class="angle-display__divider"></view>
+  <view class="angle-display__item">
+    <text class="angle-display__label">Y</text>
+    <text class="angle-display__value {{angleYStatus}}">{{angleYStr}}</text>
+    <text class="angle-display__unit">°</text>
+  </view>
+</view>

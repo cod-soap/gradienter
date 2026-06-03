@@ -1,0 +1,80 @@
+<!-- ============================================================ -->
+<!-- tutorial.wxml - 使用教程页面                                  -->
+<!-- 手风琴折叠面板展示三大教程分节：水平气泡尺、万向水平仪、常见问题 -->
+<!-- ============================================================ -->
+<scroll-view class="tutorial" scroll-y>
+
+  <!-- 页面顶部标题区 -->
+  <view class="tutorial__header">
+    <view class="tutorial__header-icon">📖</view>
+    <view class="tutorial__header-title">使用指南</view>
+    <view class="tutorial__header-subtitle">了解如何正确使用精准水平仪</view>
+  </view>
+
+  <!-- 教程分节列表 -->
+  <view class="tutorial__sections">
+    <view
+      wx:for="{{sections}}"
+      wx:key="id"
+      class="section"
+    >
+      <!-- 节标题（点击折叠/展开） -->
+      <view
+        class="section__header {{item.expanded ? 'section__header--expanded' : ''}}"
+        bindtap="toggleSection"
+        data-index="{{index}}"
+        hover-class="section__header--hover"
+        hover-stay-time="120"
+      >
+        <!-- 左侧指示条 -->
+        <view class="section__indicator"></view>
+
+        <!-- 图标 + 标题 -->
+        <view class="section__header-main">
+          <text class="section__icon">{{item.icon}}</text>
+          <text class="section__title">{{item.title}}</text>
+          <!-- 子项数量角标 -->
+          <text class="section__count">{{item.items.length}}</text>
+        </view>
+
+        <!-- 折叠箭头 -->
+        <view class="section__arrow {{item.expanded ? 'section__arrow--up' : ''}}">
+          <text class="section__arrow-icon">›</text>
+        </view>
+      </view>
+
+      <!-- 节内容区（展开时显示） -->
+      <view class="section__body {{item.expanded ? 'section__body--visible' : ''}}">
+        <view
+          wx:for="{{item.items}}"
+          wx:for-item="sub"
+          wx:for-index="subIndex"
+          wx:key="title"
+          class="item"
+        >
+          <!-- 子项序号 + 标题行 -->
+          <view class="item__header">
+            <view class="item__num">{{subIndex + 1}}</view>
+            <text class="item__title">{{sub.title}}</text>
+            <!-- 可选标签（介绍/功能/按钮/设置） -->
+            <text
+              wx:if="{{sub.tag}}"
+              class="item__tag item__tag--{{sub.tagClass}}"
+            >{{sub.tag}}</text>
+          </view>
+          <!-- 子项说明内容 -->
+          <view class="item__content">
+            <text class="item__text">{{sub.content}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部提示区 -->
+  <view class="tutorial__footer">
+    <view class="tutorial__footer-line"></view>
+    <text class="tutorial__footer-text">测量数据仅供参考，不作为专业施工依据</text>
+  </view>
+
+</scroll-view>

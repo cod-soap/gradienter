@@ -1,0 +1,270 @@
+/* ============================================================
+ * tutorial.wxss - 使用教程页面样式
+ * 工业风深色主题，手风琴折叠面板布局
+ * ============================================================ */
+
+@import '../../styles/variables.wxss';
+@import '../../styles/mixins.wxss';
+
+/* ---------- 页面容器 ---------- */
+.tutorial {
+  height: 100vh;
+  background-color: var(--color-bg-primary);
+}
+
+/* ---------- 顶部标题区 ---------- */
+.tutorial__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60rpx 40rpx 48rpx;
+  background: linear-gradient(180deg, var(--color-bg-tertiary) 0%, var(--color-bg-primary) 100%);
+  border-bottom: 1rpx solid var(--color-line-primary);
+}
+
+.tutorial__header-icon {
+  font-size: 80rpx;
+  margin-bottom: 20rpx;
+}
+
+.tutorial__header-title {
+  font-size: var(--font-size-title);
+  font-weight: 700;
+  color: var(--color-text-accent);
+  letter-spacing: 4rpx;
+  margin-bottom: 12rpx;
+}
+
+.tutorial__header-subtitle {
+  font-size: var(--font-size-tip);
+  color: var(--color-text-secondary);
+  letter-spacing: 1rpx;
+}
+
+/* ---------- 分节列表区 ---------- */
+.tutorial__sections {
+  padding: 24rpx 24rpx 0;
+}
+
+/* ---------- 单个折叠节 ---------- */
+.section {
+  margin-bottom: 20rpx;
+  border-radius: 12rpx;
+  overflow: hidden;
+  border: 1rpx solid var(--color-line-secondary);
+  background-color: var(--color-bg-secondary);
+}
+
+/* ---- 节标题（可点击） ---- */
+.section__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 28rpx 0 0;
+  min-height: 100rpx;
+  position: relative;
+  transition: background-color 0.15s;
+}
+
+.section__header--hover {
+  background-color: var(--color-bg-tertiary);
+}
+
+/* 展开状态下标题区背景加深，增强区分感 */
+.section__header--expanded {
+  background-color: var(--color-bg-tertiary);
+  border-bottom: 1rpx solid var(--color-line-primary);
+}
+
+/* 左侧竖向彩色指示条 */
+.section__indicator {
+  width: 6rpx;
+  height: 52rpx;
+  border-radius: 3rpx;
+  background-color: var(--color-accent-green);
+  margin: 0 20rpx 0 24rpx;
+  flex-shrink: 0;
+}
+
+/* 图标 + 标题 + 角标 一行 */
+.section__header-main {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.section__icon {
+  font-size: 44rpx;
+  margin-right: 16rpx;
+}
+
+.section__title {
+  font-size: var(--font-size-subtitle);
+  font-weight: 600;
+  color: var(--color-text-accent);
+  letter-spacing: 1rpx;
+}
+
+/* 子项数量角标 */
+.section__count {
+  margin-left: 12rpx;
+  font-size: 22rpx;
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-primary);
+  border-radius: 20rpx;
+  padding: 2rpx 14rpx;
+  font-family: var(--font-mono);
+}
+
+/* 折叠箭头 */
+.section__arrow {
+  width: 44rpx;
+  height: 44rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.section__arrow--up .section__arrow-icon {
+  display: inline-block;
+  transform: rotate(-90deg);
+}
+
+.section__arrow-icon {
+  display: inline-block;
+  font-size: 44rpx;
+  color: var(--color-text-secondary);
+  transform: rotate(90deg);
+  transition: transform 0.25s ease;
+  line-height: 1;
+}
+
+/* ---- 节内容区 ---- */
+.section__body {
+  display: none; /* 默认折叠，隐藏内容 */
+  padding: 0 24rpx 16rpx;
+}
+
+/* 展开时显示内容 */
+.section__body--visible {
+  display: block;
+}
+
+/* ---------- 子项（教程条目） ---------- */
+.item {
+  padding: 28rpx 0;
+  border-bottom: 1rpx solid var(--color-line-secondary);
+}
+
+.item:last-child {
+  border-bottom: none;
+  padding-bottom: 8rpx;
+}
+
+/* 子项头部：序号 + 标题 + 标签 */
+.item__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 14rpx;
+}
+
+/* 序号徽章 */
+.item__num {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  background-color: var(--color-bg-primary);
+  border: 1rpx solid var(--color-accent-blue);
+  color: var(--color-accent-blue);
+  font-size: 22rpx;
+  font-family: var(--font-mono);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-right: 16rpx;
+}
+
+.item__title {
+  flex: 1;
+  font-size: var(--font-size-label);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: 0.5rpx;
+}
+
+/* 功能标签（颜色按类型区分） */
+.item__tag {
+  font-size: 20rpx;
+  padding: 4rpx 14rpx;
+  border-radius: 20rpx;
+  margin-left: 12rpx;
+  flex-shrink: 0;
+}
+
+/* intro - 介绍标签，蓝色 */
+.item__tag--intro {
+  background-color: rgba(41, 121, 255, 0.15);
+  color: var(--color-accent-blue);
+  border: 1rpx solid rgba(41, 121, 255, 0.4);
+}
+
+/* feature - 功能标签，绿色 */
+.item__tag--feature {
+  background-color: rgba(0, 230, 118, 0.12);
+  color: var(--color-accent-green);
+  border: 1rpx solid rgba(0, 230, 118, 0.35);
+}
+
+/* button - 按钮标签，黄色 */
+.item__tag--button {
+  background-color: rgba(255, 214, 0, 0.12);
+  color: var(--color-accent-yellow);
+  border: 1rpx solid rgba(255, 214, 0, 0.35);
+}
+
+/* setting - 设置标签，灰色 */
+.item__tag--setting {
+  background-color: rgba(158, 158, 158, 0.12);
+  color: var(--color-text-secondary);
+  border: 1rpx solid rgba(158, 158, 158, 0.3);
+}
+
+/* 子项说明文本 */
+.item__content {
+  padding-left: 56rpx; /* 与序号徽章对齐 */
+}
+
+.item__text {
+  font-size: var(--font-size-tip);
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  letter-spacing: 0.3rpx;
+}
+
+/* ---------- 底部提示区 ---------- */
+.tutorial__footer {
+  padding: 48rpx 40rpx 80rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.tutorial__footer-line {
+  width: 60rpx;
+  height: 2rpx;
+  background-color: var(--color-line-primary);
+  border-radius: 1rpx;
+}
+
+.tutorial__footer-text {
+  font-size: 22rpx;
+  color: var(--color-text-secondary);
+  text-align: center;
+  letter-spacing: 0.5rpx;
+}

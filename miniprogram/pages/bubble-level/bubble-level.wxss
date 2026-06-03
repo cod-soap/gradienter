@@ -1,0 +1,165 @@
+/* bubble-level.wxss - 水平气泡尺页面样式 */
+@import '../../styles/variables.wxss';
+@import '../../styles/mixins.wxss';
+
+/* ---- 页面根容器 ---- */
+.page {
+  height: 100vh;
+  background-color: var(--color-bg-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 8rpx 0;
+  /* 底部为工具栏留出空间 */
+  padding-bottom: calc(100rpx + 16rpx + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* ---- 通用 section ---- */
+.section {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 区域标签 */
+.section__label {
+  font-size: var(--font-size-tip);
+  color: var(--color-text-secondary);
+  letter-spacing: 2rpx;
+  padding-left: 20rpx;
+  margin-bottom: 4rpx;
+}
+
+.section__label--center {
+  text-align: center;
+  padding-left: 0;
+  margin-bottom: 4rpx;
+}
+
+/* ---- 水平管区域（紧贴屏幕两侧） ---- */
+.section--horiz {
+  margin-bottom: 8rpx;
+  padding: 0 12rpx;
+}
+
+/* ---- 下半区：垂直管（左，紧贴屏幕） + 右侧内容 ---- */
+.section--lower {
+  flex: 1;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 0;
+  min-height: 0;
+  /* 左侧无padding，让垂直刻度尺紧贴屏幕边缘 */
+  padding: 0 12rpx 0 0;
+}
+
+/* 垂直管区域：紧贴左侧屏幕，宽度固定，高度填满 */
+.vert-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 140rpx;
+  flex-shrink: 0;
+}
+
+/* 右侧区域：45°管（上下排列）+ 角度数值 */
+.right-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding-left: 8rpx;
+  gap: 8rpx;
+}
+
+/* 单个45°管项（上下排列时的容器） */
+.diag-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* 角度数值区域 */
+.data-area {
+  margin-top: 8rpx;
+}
+
+/* ---- 气泡管容器 ---- */
+
+/* 水平管：宽而高（含内嵌刻度尺） */
+.tube-container--horiz {
+  width: 100%;
+  height: 110rpx;
+}
+
+/* 垂直管：有刻度尺，加宽容器，高度填满 */
+.tube-container--vert {
+  width: 130rpx;
+  flex: 1;
+  min-height: 300rpx;
+}
+
+/* 45°管：放大尺寸，宽度撑满右侧区域，保持正方形 */
+.tube-container--diag {
+  width: min(280rpx, 50vw);
+  height: min(280rpx, 50vw);
+}
+
+/* ---- 底部工具栏 ---- */
+.toolbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: auto;
+  background-color: var(--color-bg-secondary);
+  border-top: 1rpx solid var(--color-line-primary);
+  padding: 12rpx 24rpx;
+  padding-bottom: calc(12rpx + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12rpx;
+  z-index: 100;
+}
+
+/* ---- 单位切换按钮 ---- */
+.unit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx 24rpx;
+  border-radius: var(--radius-sm);
+  border: 1.5rpx solid var(--color-line-primary);
+  background-color: var(--color-bg-tertiary);
+  transition: all 150ms ease;
+}
+
+/* cm 状态：绿色边框 */
+.unit-btn--cm {
+  border-color: var(--color-accent-green);
+  background-color: rgba(0, 230, 118, 0.1);
+}
+
+/* inch 状态：黄色边框 */
+.unit-btn--inch {
+  border-color: var(--color-accent-yellow);
+  background-color: rgba(255, 214, 0, 0.1);
+}
+
+.unit-btn--hover {
+  transform: scale(0.95);
+  opacity: 0.8;
+}
+
+.unit-btn__label {
+  font-size: var(--font-size-label);
+  color: var(--color-text-accent);
+  font-family: var(--font-mono);
+  letter-spacing: 1rpx;
+}

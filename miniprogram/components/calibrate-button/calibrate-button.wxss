@@ -1,0 +1,55 @@
+/* calibrate-button.wxss - 校准按钮样式（工业风） */
+@import '../../styles/variables.wxss';
+
+:host {
+  display: inline-block;
+}
+
+/* 按钮主体 */
+.calib-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8rpx;
+  padding: 12rpx 24rpx;
+  background-color: var(--color-bg-tertiary);
+  border: 1.5rpx solid var(--color-line-primary);
+  border-radius: var(--radius-sm);
+  transition: all 150ms ease;
+}
+
+/* 已校准状态：蓝色边框 + 发光 */
+.calib-btn--active {
+  border-color: var(--color-accent-blue);
+  background-color: rgba(41, 121, 255, 0.15);
+  box-shadow: 0 0 12rpx rgba(41, 121, 255, 0.3);
+}
+
+/* 点击态 */
+.calib-btn--hover {
+  transform: scale(0.95);
+  opacity: 0.85;
+}
+
+/* 图标容器 */
+.calib-btn__icon {
+  width: 32rpx;
+  height: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 图标文字 */
+.calib-btn__icon-text {
+  font-size: 26rpx;
+  color: var(--color-accent-blue);
+  line-height: 1;
+}
+
+/* 按钮文字 */
+.calib-btn__label {
+  font-size: var(--font-size-label);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}

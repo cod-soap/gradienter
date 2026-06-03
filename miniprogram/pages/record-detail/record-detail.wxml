@@ -1,0 +1,111 @@
+<!-- record-detail.wxml - 记录详情/分享落地页模板 -->
+<!-- 展示单条角度记录的完整信息，分享来源时显示「打开水平仪」按钮 -->
+<view class="detail-page">
+
+  <!-- ============================================================
+       加载中状态（数据还未解析完成时）
+       ============================================================ -->
+  <view wx:if="{{!loaded}}" class="detail-loading">
+    <text class="detail-loading__text">加载中...</text>
+  </view>
+
+  <!-- ============================================================
+       错误状态（参数解析失败 or 记录不存在）
+       ============================================================ -->
+  <view wx:elif="{{loadError}}" class="detail-error">
+    <text class="detail-error__icon">⚠</text>
+    <text class="detail-error__title">记录加载失败</text>
+    <text class="detail-error__desc">{{loadError}}</text>
+    <view
+      class="detail-btn detail-btn--primary"
+      hover-class="detail-btn--hover"
+      hover-stay-time="150"
+      bind:tap="_goToIndex"
+    >
+      <text class="detail-btn__text">返回首页</text>
+    </view>
+  </view>
+
+  <!-- ============================================================
+       正常内容区
+       ============================================================ -->
+  <view wx:else class="detail-content">
+
+    <!-- 分享来源标识横幅（仅分享落地页显示） -->
+    <view wx:if="{{isFromShare}}" class="detail-share-banner">
+      <text class="detail-share-banner__text">📐 好友分享了一条测量记录</text>
+    </view>
+
+    <!-- 主展示区：罗盘装饰 + 角度数值 -->
+    <view class="detail-main">
+      <!-- 装饰性罗盘图案（静态，表示测量状态） -->
+      <view class="detail-dial">
+        <view class="detail-dial__outer">
+          <view class="detail-dial__crosshair-h"></view>
+          <view class="detail-dial__crosshair-v"></view>
+          <!-- 小圆点指示器，位置固定（不是实时，仅展示） -->
+          <view class="detail-dial__dot"></view>
+        </view>
+      </view>
+
+      <!-- 角度数值大号展示 -->
+      <view class="detail-angles">
+        <text class="detail-angles__value">{{formattedAngle}}</text>
+        <text class="detail-angles__label">测量角度</text>
+      </view>
+    </view>
+
+    <!-- 信息面板：时间、位置等元信息 -->
+    <view class="detail-info">
+      <!-- 时间行 -->
+      <view class="detail-info__row">
+        <text class="detail-info__icon">🕐</text>
+        <view class="detail-info__body">
+          <text class="detail-info__label">记录时间</text>
+          <text class="detail-info__value">{{formattedTime}}</text>
+        </view>
+      </view>
+
+      <!-- 位置行（有位置数据时才显示） -->
+      <view wx:if="{{hasLocation}}" class="detail-info__row">
+        <text class="detail-info__icon">📍</text>
+        <view class="detail-info__body">
+          <text class="detail-info__label">记录位置</text>
+          <text class="detail-info__value">{{locationText}}</text>
+        </view>
+      </view>
+
+      <!-- 无位置时的提示 -->
+      <view wx:else class="detail-info__row detail-info__row--muted">
+        <text class="detail-info__icon">📍</text>
+        <view class="detail-info__body">
+          <text class="detail-info__label">记录位置</text>
+          <text class="detail-info__value detail-info__value--muted">未记录位置</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 底部操作区 -->
+    <view class="detail-footer">
+      <!-- 分享落地页：显示「打开水平仪」引导按钮 -->
+      <view wx:if="{{isFromShare}}" class="detail-footer__share-cta">
+        <view
+          class="detail-btn detail-btn--primary"
+          hover-class="detail-btn--hover"
+          hover-stay-time="150"
+          bind:tap="_goToIndex"
+        >
+          <text class="detail-btn__text">🔧 打开水平仪</text>
+        </view>
+        <text class="detail-footer__share-hint">用精准水平仪测量你身边的角度</text>
+      </view>
+
+      <!-- 本地查看：分享按钮（通过右上角「...」菜单触发，此处为提示） -->
+      <view wx:else class="detail-footer__local-hint">
+        <text class="detail-footer__local-hint-text">点击右上角「···」可将此记录分享给好友</text>
+      </view>
+    </view>
+
+  </view><!-- end detail-content -->
+
+</view>

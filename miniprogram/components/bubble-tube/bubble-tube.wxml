@@ -1,0 +1,7 @@
+<!-- bubble-tube.wxml - 气泡管组件模板 -->
+<!-- Canvas 2D 绘制气泡管体，支持水平/垂直/45°三种方向 -->
+<canvas
+  type="2d"
+  id="bubble-canvas"
+  class="bubble-canvas"
+></canvas>
