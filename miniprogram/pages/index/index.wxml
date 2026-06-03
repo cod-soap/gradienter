@@ -1,0 +1,89 @@
+<!-- index.wxml - 首页布局 -->
+<!-- 三个功能入口卡片：水平气泡尺 / 万向水平仪 / 使用教程 -->
+<view class="page">
+
+  <!-- 顶部标题区域 -->
+  <view class="header">
+    <view class="header__title-row">
+      <text class="header__icon">⊕</text>
+      <text class="header__title">精准水平仪</text>
+    </view>
+    <text class="header__subtitle">专业级测量工具</text>
+    <!-- 传感器不支持时显示警告横幅 -->
+    <view class="header__warning" wx:if="{{!sensorSupported}}">
+      <text class="header__warning-text">⚠ 当前设备可能不支持方向传感器，测量功能受限</text>
+    </view>
+  </view>
+
+  <!-- 功能入口卡片列表 -->
+  <view class="card-list">
+
+    <!-- 水平气泡尺入口卡片 -->
+    <view class="entry-card entry-card--level" hover-class="entry-card--pressed" hover-stay-time="150" bindtap="goToBubbleLevel">
+      <view class="entry-card__indicator entry-card__indicator--green"></view>
+      <view class="entry-card__body">
+        <view class="entry-card__icon-wrap entry-card__icon-wrap--green">
+          <text class="entry-card__icon">≡</text>
+        </view>
+        <view class="entry-card__text">
+          <text class="entry-card__name">水平气泡尺</text>
+          <text class="entry-card__desc">垂直 / 水平 / 45° 三合一测量</text>
+          <view class="entry-card__tags">
+            <text class="tag">水平管</text>
+            <text class="tag">垂直管</text>
+            <text class="tag">45°管</text>
+            <text class="tag">刻度尺</text>
+          </view>
+        </view>
+        <view class="entry-card__arrow">›</view>
+      </view>
+    </view>
+
+    <!-- 万向水平仪入口卡片 -->
+    <view class="entry-card entry-card--compass" hover-class="entry-card--pressed" hover-stay-time="150" bindtap="goToUniversalLevel">
+      <view class="entry-card__indicator entry-card__indicator--blue"></view>
+      <view class="entry-card__body">
+        <view class="entry-card__icon-wrap entry-card__icon-wrap--blue">
+          <text class="entry-card__icon">◎</text>
+        </view>
+        <view class="entry-card__text">
+          <text class="entry-card__name">万向水平仪</text>
+          <text class="entry-card__desc">360° 罗盘，X/Y 双轴角度测量</text>
+          <view class="entry-card__tags">
+            <text class="tag">罗盘表盘</text>
+            <text class="tag">角度记录</text>
+            <text class="tag">校准</text>
+          </view>
+        </view>
+        <view class="entry-card__arrow">›</view>
+      </view>
+    </view>
+
+    <!-- 使用教程入口卡片 -->
+    <view class="entry-card entry-card--tutorial" hover-class="entry-card--pressed" hover-stay-time="150" bindtap="goToTutorial">
+      <view class="entry-card__indicator entry-card__indicator--yellow"></view>
+      <view class="entry-card__body">
+        <view class="entry-card__icon-wrap entry-card__icon-wrap--yellow">
+          <text class="entry-card__icon">?</text>
+        </view>
+        <view class="entry-card__text">
+          <text class="entry-card__name">使用教程</text>
+          <text class="entry-card__desc">了解各功能的使用方法与技巧</text>
+          <view class="entry-card__tags">
+            <text class="tag">图文说明</text>
+            <text class="tag">常见问题</text>
+          </view>
+        </view>
+        <view class="entry-card__arrow">›</view>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- 底部免责声明 -->
+  <view class="footer">
+    <text class="footer__tip">本工具测量结果仅供参考，请勿用于精密工程场景</text>
+    <text class="footer__version">v{{appVersion}}</text>
+  </view>
+
+</view>

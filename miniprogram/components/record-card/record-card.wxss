@@ -1,0 +1,114 @@
+/* ============================================================
+ * record-card.wxss - 角度记录卡片样式
+ * 工业风深色卡片：左侧亮色指示条 + 深色背景 + 两列操作按钮
+ * ============================================================ */
+
+@import "../../styles/variables.wxss";
+
+/* 卡片容器：水平 flex 布局，行对齐拉伸 */
+.record-card {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  background-color: var(--color-bg-secondary);
+  border: 1rpx solid var(--color-line-primary);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+/* 左侧亮色指示条（绿色工业风视觉标记） */
+.record-card__indicator {
+  width: 6rpx;
+  background-color: var(--color-accent-green);
+  flex-shrink: 0;
+}
+
+/* 主内容区：自适应宽度，内边距 */
+.record-card__content {
+  flex: 1;
+  padding: var(--spacing-md) var(--spacing-sm) var(--spacing-md) var(--spacing-md);
+  min-width: 0; /* 防止文字溢出flex容器 */
+}
+
+/* 角度数值：大号等宽字体，白色高对比度 */
+.record-card__angle {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-angle-md);
+  color: var(--color-text-accent);
+  margin-bottom: var(--spacing-xs);
+  /* 防止角度字符串过长时溢出 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 元信息容器：垂直排列时间和位置 */
+.record-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+}
+
+/* 时间文字：副文字色，小号字体 */
+.record-card__time {
+  font-size: var(--font-size-tip);
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+}
+
+/* 位置文字：副文字色，小号字体，超出截断 */
+.record-card__location {
+  font-size: var(--font-size-tip);
+  color: var(--color-text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 操作按钮区：垂直排列，右侧分割线 */
+.record-card__actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm);
+  border-left: 1rpx solid var(--color-line-secondary);
+  flex-shrink: 0;
+}
+
+/* 按钮基础样式 */
+.record-card__btn {
+  padding: 12rpx 20rpx;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  min-width: 96rpx;
+  transition: all 150ms ease;
+}
+
+/* 分享按钮：蓝色调 */
+.record-card__btn--share {
+  background-color: rgba(41, 121, 255, 0.12);
+  border: 1rpx solid var(--color-accent-blue);
+}
+
+/* 删除按钮：红色调 */
+.record-card__btn--delete {
+  background-color: rgba(255, 23, 68, 0.1);
+  border: 1rpx solid var(--color-accent-red);
+}
+
+/* 按钮按下态：缩放 + 透明度变化 */
+.record-card__btn--hover {
+  opacity: 0.65;
+  transform: scale(0.95);
+}
+
+/* 按钮文字 */
+.record-card__btn-text {
+  font-size: var(--font-size-tip);
+  color: var(--color-text-primary);
+}

@@ -1,0 +1,226 @@
+/* ============================================================
+ * mixins.wxss - 公共样式片段
+ * 提供可复用的样式模式，减少各页面重复代码
+ * ============================================================ */
+
+/* ----------------------------------------------------------
+ * 工业风入口卡片（首页功能卡片）
+ * 大尺寸卡片，有图标、标题、副标题，霓虹发光边框
+ * ---------------------------------------------------------- */
+.entry-card {
+  background-color: var(--color-bg-secondary);
+  border: 1rpx solid var(--color-line-primary);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  margin: 0 var(--spacing-md) var(--spacing-md);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+  transition: all 150ms ease;
+}
+
+/* 入口卡片点击态 */
+.entry-card:active {
+  transform: scale(0.97);
+  background-color: var(--color-bg-tertiary);
+  border-color: var(--color-accent-blue);
+  box-shadow: var(--glow-blue);
+}
+
+/* 入口卡片图标区域 */
+.entry-card__icon {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: var(--spacing-md);
+  flex-shrink: 0;
+}
+
+/* 入口卡片文字区域 */
+.entry-card__content {
+  flex: 1;
+}
+
+/* 入口卡片标题 */
+.entry-card__title {
+  font-size: var(--font-size-subtitle);
+  color: var(--color-text-accent);
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+}
+
+/* 入口卡片副标题 */
+.entry-card__desc {
+  font-size: var(--font-size-tip);
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}
+
+/* 入口卡片右侧箭头 */
+.entry-card__arrow {
+  color: var(--color-text-secondary);
+  font-size: 32rpx;
+  margin-left: var(--spacing-sm);
+}
+
+/* ----------------------------------------------------------
+ * 底部工具栏（固定在页面底部）
+ * ---------------------------------------------------------- */
+.bottom-toolbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--color-bg-secondary);
+  border-top: 1rpx solid var(--color-line-primary);
+  padding: var(--spacing-sm) var(--spacing-md);
+  padding-bottom: calc(var(--spacing-sm) + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+}
+
+/* ----------------------------------------------------------
+ * 页面内容区（为底部工具栏留出空间）
+ * ---------------------------------------------------------- */
+.page-content {
+  padding-bottom: calc(var(--toolbar-height) + env(safe-area-inset-bottom) + var(--spacing-md));
+}
+
+/* ----------------------------------------------------------
+ * 数据面板（深色半透明面板，用于显示角度等数值）
+ * ---------------------------------------------------------- */
+.data-panel {
+  background-color: var(--color-bg-tertiary);
+  border: 1rpx solid var(--color-line-primary);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xl);
+}
+
+/* ----------------------------------------------------------
+ * 标签+数值组合（如"X: 2.5°"）
+ * ---------------------------------------------------------- */
+.data-item {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: var(--spacing-xs);
+}
+
+.data-item__label {
+  font-size: var(--font-size-tip);
+  color: var(--color-text-secondary);
+}
+
+.data-item__value {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-angle-md);
+  color: var(--color-text-accent);
+  min-width: 120rpx;
+}
+
+/* ----------------------------------------------------------
+ * 导航栏标题（自定义导航栏使用）
+ * ---------------------------------------------------------- */
+.nav-title {
+  font-size: var(--font-size-title);
+  color: var(--color-text-accent);
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ----------------------------------------------------------
+ * 工业风section标题（教程、记录列表等分节标题）
+ * ---------------------------------------------------------- */
+.section-title {
+  font-size: var(--font-size-subtitle);
+  color: var(--color-accent-blue);
+  font-weight: 600;
+  padding: var(--spacing-md) var(--spacing-md) var(--spacing-sm);
+  border-left: 6rpx solid var(--color-accent-blue);
+  margin-left: var(--spacing-md);
+}
+
+/* ----------------------------------------------------------
+ * 状态指示圆点（绿=正常/水平，黄=轻微偏离，红=明显偏离）
+ * ---------------------------------------------------------- */
+.status-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: var(--radius-full);
+  display: inline-block;
+}
+
+.status-dot--ok {
+  background-color: var(--color-accent-green);
+  box-shadow: var(--glow-green);
+}
+
+.status-dot--warn {
+  background-color: var(--color-accent-yellow);
+}
+
+.status-dot--error {
+  background-color: var(--color-accent-red);
+}
+
+/* ----------------------------------------------------------
+ * 灵敏度选择器的圆点指示（●●●○○）
+ * ---------------------------------------------------------- */
+.sensitivity-dot {
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: var(--radius-full);
+  background-color: var(--color-line-primary);
+  display: inline-block;
+  margin: 0 4rpx;
+}
+
+.sensitivity-dot--active {
+  background-color: var(--color-accent-blue);
+}
+
+/* ----------------------------------------------------------
+ * 记录卡片列表容器
+ * ---------------------------------------------------------- */
+.record-list {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+/* ----------------------------------------------------------
+ * 页面顶部装饰性标题区域
+ * ---------------------------------------------------------- */
+.page-header {
+  padding: var(--spacing-lg) var(--spacing-md) var(--spacing-md);
+  text-align: center;
+}
+
+.page-header__title {
+  font-size: var(--font-size-title);
+  color: var(--color-text-accent);
+  font-weight: 700;
+  letter-spacing: 4rpx;
+}
+
+.page-header__subtitle {
+  font-size: var(--font-size-tip);
+  color: var(--color-text-secondary);
+  margin-top: var(--spacing-xs);
+}

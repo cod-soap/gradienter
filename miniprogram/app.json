@@ -1,0 +1,29 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/bubble-level/bubble-level",
+    "pages/universal-level/universal-level",
+    "pages/records/records",
+    "pages/record-detail/record-detail",
+    "pages/tutorial/tutorial",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "精准水平仪",
+    "navigationBarBackgroundColor": "#1A1A2E",
+    "backgroundColor": "#1A1A2E",
+    "pageOrientation": "portrait"
+  },
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "lazyCodeLoading": "requiredComponents",
+  "requiredPrivateInfos": [
+    "getLocation"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于记录测量时的位置信息"
+    }
+  }
+}

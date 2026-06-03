@@ -1,0 +1,211 @@
+/* ============================================================
+ * index.wxss - 首页样式
+ * 工业风深色主题，三张功能入口卡片布局
+ * ============================================================ */
+
+@import "../../styles/variables.wxss";
+@import "../../styles/mixins.wxss";
+
+/* 页面根容器 */
+.page {
+  min-height: 100vh;
+  background-color: var(--color-bg-primary);
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 40rpx;
+  box-sizing: border-box;
+}
+
+/* ─── 顶部标题区域 ─────────────────────────────────── */
+.header {
+  padding: 72rpx 40rpx 40rpx;
+  /* 底部渐变分隔线 */
+  border-bottom: 1rpx solid var(--color-line-secondary);
+  margin-bottom: 32rpx;
+}
+
+.header__title-row {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-bottom: 8rpx;
+}
+
+.header__icon {
+  font-size: 40rpx;
+  color: var(--color-accent-green);
+  /* 霓虹发光效果 */
+  text-shadow: 0 0 12rpx rgba(0, 230, 118, 0.7);
+}
+
+.header__title {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: var(--color-text-accent);
+  letter-spacing: 4rpx;
+}
+
+.header__subtitle {
+  font-size: var(--font-size-tip);
+  color: var(--color-text-secondary);
+  margin-left: 56rpx; /* 与标题图标对齐 */
+  letter-spacing: 2rpx;
+}
+
+/* 传感器不支持警告横幅 */
+.header__warning {
+  margin-top: 20rpx;
+  padding: 16rpx 20rpx;
+  background-color: rgba(255, 23, 68, 0.12);
+  border: 1rpx solid rgba(255, 23, 68, 0.4);
+  border-radius: var(--radius-sm);
+}
+
+.header__warning-text {
+  font-size: var(--font-size-tip);
+  color: var(--color-accent-red);
+}
+
+/* ─── 卡片列表 ─────────────────────────────────────── */
+.card-list {
+  flex: 1;
+  padding: 0 32rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+/* ─── 入口卡片基础样式 ───────────────────────────────── */
+.entry-card {
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-md);
+  border: 1rpx solid var(--color-line-secondary);
+  overflow: hidden;
+  position: relative;
+  /* 卡片阴影 */
+  box-shadow: var(--shadow-card);
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+/* 点击按下态 */
+.entry-card--pressed {
+  transform: scale(0.97);
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.6);
+}
+
+/* 卡片内容行 */
+.entry-card__body {
+  display: flex;
+  align-items: center;
+  padding: 32rpx 28rpx 32rpx 0;
+  gap: 24rpx;
+}
+
+/* 左侧亮色指示条 */
+.entry-card__indicator {
+  width: 6rpx;
+  align-self: stretch;
+  border-radius: 0 3rpx 3rpx 0;
+  flex-shrink: 0;
+}
+
+.entry-card__indicator--green  { background-color: var(--color-accent-green); box-shadow: var(--glow-green); }
+.entry-card__indicator--blue   { background-color: var(--color-accent-blue);  box-shadow: var(--glow-blue); }
+.entry-card__indicator--yellow { background-color: var(--color-accent-yellow); }
+
+/* 图标容器 */
+.entry-card__icon-wrap {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.entry-card__icon-wrap--green  { background-color: rgba(0, 230, 118, 0.12); border: 1rpx solid rgba(0, 230, 118, 0.3); }
+.entry-card__icon-wrap--blue   { background-color: rgba(41, 121, 255, 0.12); border: 1rpx solid rgba(41, 121, 255, 0.3); }
+.entry-card__icon-wrap--yellow { background-color: rgba(255, 214, 0, 0.12); border: 1rpx solid rgba(255, 214, 0, 0.3); }
+
+.entry-card__icon {
+  font-size: 44rpx;
+  font-weight: bold;
+}
+
+.entry-card__icon-wrap--green  .entry-card__icon  { color: var(--color-accent-green); }
+.entry-card__icon-wrap--blue   .entry-card__icon  { color: var(--color-accent-blue); }
+.entry-card__icon-wrap--yellow .entry-card__icon  { color: var(--color-accent-yellow); }
+
+/* 文字区域 */
+.entry-card__text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.entry-card__name {
+  font-size: var(--font-size-subtitle);
+  font-weight: 600;
+  color: var(--color-text-accent);
+  letter-spacing: 1rpx;
+}
+
+.entry-card__desc {
+  font-size: var(--font-size-tip);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* 功能标签列表 */
+.entry-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8rpx;
+  margin-top: 4rpx;
+}
+
+.tag {
+  font-size: var(--font-size-tiny);
+  color: var(--color-text-secondary);
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid var(--color-line-secondary);
+  border-radius: var(--radius-full);
+  padding: 4rpx 14rpx;
+}
+
+/* 右侧箭头 */
+.entry-card__arrow {
+  font-size: 40rpx;
+  color: var(--color-line-primary);
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* 各卡片的特定发光边框（鼠标悬停/激活时） */
+.entry-card--level  { border-color: rgba(0, 230, 118, 0.15); }
+.entry-card--compass { border-color: rgba(41, 121, 255, 0.15); }
+.entry-card--tutorial { border-color: rgba(255, 214, 0, 0.1); }
+
+/* ─── 底部 ──────────────────────────────────────────── */
+.footer {
+  padding: 32rpx 40rpx 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.footer__tip {
+  font-size: var(--font-size-tiny);
+  color: var(--color-text-disabled);
+  text-align: center;
+  line-height: 1.6;
+}
+
+.footer__version {
+  font-size: var(--font-size-tiny);
+  color: var(--color-text-disabled);
+  font-family: var(--font-mono);
+}

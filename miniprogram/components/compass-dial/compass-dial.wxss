@@ -1,0 +1,15 @@
+/* compass-dial.wxss - 罗盘表盘组件样式 */
+
+/* 组件根节点撑满父容器 */
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Canvas 填充整个组件区域 */
+.compass-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

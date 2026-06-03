@@ -1,0 +1,41 @@
+<!-- record-card.wxml - 角度记录卡片模板 -->
+<!-- 显示单条测量记录：左侧指示条 + 角度值 + 时间/位置 + 分享/删除按钮 -->
+<view class="record-card">
+
+  <!-- 左侧亮绿色指示条，与首页入口卡片的工业风视觉语言一致 -->
+  <view class="record-card__indicator"></view>
+
+  <!-- 主内容区：角度值 + 元信息 -->
+  <view class="record-card__content">
+    <!-- 角度数值：等宽字体，突出测量结果 -->
+    <text class="record-card__angle">{{formattedAngle}}</text>
+
+    <!-- 元信息区：时间和位置 -->
+    <view class="record-card__meta">
+      <text class="record-card__time">🕐 {{formattedTime}}</text>
+      <!-- 有位置信息时才显示位置行 -->
+      <text wx:if="{{hasLocation}}" class="record-card__location">📍 {{locationText}}</text>
+    </view>
+  </view>
+
+  <!-- 操作按钮区：分享 + 删除，垂直排列 -->
+  <view class="record-card__actions">
+    <view
+      class="record-card__btn record-card__btn--share"
+      hover-class="record-card__btn--hover"
+      hover-stay-time="100"
+      bind:tap="_onShare"
+    >
+      <text class="record-card__btn-text">分享</text>
+    </view>
+    <view
+      class="record-card__btn record-card__btn--delete"
+      hover-class="record-card__btn--hover"
+      hover-stay-time="100"
+      bind:tap="_onDelete"
+    >
+      <text class="record-card__btn-text">删除</text>
+    </view>
+  </view>
+
+</view>

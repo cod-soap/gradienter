@@ -1,0 +1,7 @@
+<!-- compass-dial.wxml - 罗盘表盘组件 -->
+<!-- Canvas 2D 绘制360°刻度盘、十字线、倾斜指示小圆点 -->
+<canvas
+  type="2d"
+  id="compass-canvas"
+  class="compass-canvas"
+></canvas>

@@ -1,0 +1,15 @@
+<!-- calibrate-button.wxml - 校准/重置切换按钮 -->
+<!-- 根据 isCalibrated 状态显示不同文字和样式 -->
+<view
+  class="calib-btn {{isCalibrated ? 'calib-btn--active' : ''}}"
+  hover-class="calib-btn--hover"
+  hover-stay-time="100"
+  bind:tap="_onTap"
+>
+  <!-- 图标区域 -->
+  <view class="calib-btn__icon">
+    <text class="calib-btn__icon-text">{{isCalibrated ? '✓' : '⊙'}}</text>
+  </view>
+  <!-- 文字区域 -->
+  <text class="calib-btn__label">{{isCalibrated ? '重置校准' : '校准'}}</text>
+</view>

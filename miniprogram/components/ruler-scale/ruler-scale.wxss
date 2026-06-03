@@ -1,0 +1,14 @@
+/* ruler-scale.wxss - 刻度尺组件样式 */
+
+/* :host 撑满父容器，由页面控制尺寸 */
+:host {
+  display: block;
+  width: 100%;
+}
+
+/* Canvas 填满组件宿主元素 */
+.ruler-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

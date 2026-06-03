@@ -1,0 +1,49 @@
+<!-- sensitivity-picker.wxml - 灵敏度选择器 -->
+<!-- 圆点展示当前档位，点击后弹出单选面板供精确选择 -->
+
+<!-- 触控区域：圆点指示器 + 标签，点击弹出面板 -->
+<view class="picker" bind:tap="_onPickerTap">
+  <text class="picker__label">灵敏度</text>
+  <view class="picker__dots">
+    <view
+      wx:for="{{levels}}"
+      wx:key="*this"
+      class="picker__dot {{item <= value ? 'picker__dot--active' : ''}}"
+    ></view>
+  </view>
+  <!-- 展开箭头提示 -->
+  <text class="picker__arrow">▸</text>
+</view>
+
+<!-- 弹出选择面板（局部遮罩 + 选项列表） -->
+<view wx:if="{{showPanel}}" class="panel-mask" bind:tap="_onMaskTap">
+  <view class="panel" catchtap="">
+    <view class="panel__title">选择灵敏度</view>
+    <view
+      wx:for="{{options}}"
+      wx:key="level"
+      class="panel__option {{item.level === value ? 'panel__option--active' : ''}}"
+      data-level="{{item.level}}"
+      bind:tap="_onOptionTap"
+    >
+      <!-- 左侧：单选圆圈 -->
+      <view class="panel__radio {{item.level === value ? 'panel__radio--checked' : ''}}">
+        <view wx:if="{{item.level === value}}" class="panel__radio-dot"></view>
+      </view>
+      <!-- 中间：档位名称和描述 -->
+      <view class="panel__text">
+        <text class="panel__name">{{item.name}}</text>
+        <text class="panel__desc">{{item.desc}}</text>
+      </view>
+      <!-- 右侧：档位圆点指示 -->
+      <view class="panel__dots-mini">
+        <view
+          wx:for="{{levels}}"
+          wx:for-item="dot"
+          wx:key="*this"
+          class="panel__dot-mini {{dot <= item.level ? 'panel__dot-mini--on' : ''}}"
+        ></view>
+      </view>
+    </view>
+  </view>
+</view>

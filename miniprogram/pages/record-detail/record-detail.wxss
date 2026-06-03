@@ -1,0 +1,270 @@
+/* ============================================================
+ * record-detail.wxss - 记录详情/分享落地页样式
+ * 工业风深色详情页：大号角度数值 + 装饰罗盘 + 信息面板 + 底部操作
+ * ============================================================ */
+
+@import "../../styles/variables.wxss";
+
+/* 页面根容器 */
+.detail-page {
+  min-height: 100vh;
+  background-color: var(--color-bg-primary);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   加载中 & 错误状态
+   ============================================================ */
+
+.detail-loading,
+.detail-error {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xxl);
+  min-height: 100vh;
+}
+
+.detail-loading__text {
+  font-size: var(--font-size-label);
+  color: var(--color-text-secondary);
+}
+
+.detail-error__icon {
+  font-size: 80rpx;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-accent-yellow);
+}
+
+.detail-error__title {
+  font-size: var(--font-size-subtitle);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.detail-error__desc {
+  font-size: var(--font-size-label);
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+/* ============================================================
+   内容区域
+   ============================================================ */
+
+.detail-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 分享来源横幅 */
+.detail-share-banner {
+  background-color: var(--color-bg-tertiary);
+  border-bottom: 1rpx solid var(--color-accent-blue);
+  padding: var(--spacing-sm) var(--spacing-lg);
+}
+
+.detail-share-banner__text {
+  font-size: var(--font-size-tip);
+  color: var(--color-accent-blue);
+}
+
+/* 主展示区：罗盘 + 角度数值 */
+.detail-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-xl) var(--spacing-lg);
+  background-color: var(--color-bg-secondary);
+  border-bottom: 1rpx solid var(--color-line-secondary);
+}
+
+/* 装饰性罗盘（静态展示，不随传感器更新） */
+.detail-dial {
+  margin-bottom: var(--spacing-lg);
+}
+
+.detail-dial__outer {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  border: 2rpx solid var(--color-line-primary);
+  background-color: var(--color-bg-primary);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 40rpx rgba(0, 230, 118, 0.15);
+}
+
+/* 横向十字线 */
+.detail-dial__crosshair-h {
+  position: absolute;
+  width: 80%;
+  height: 1rpx;
+  background-color: var(--color-line-primary);
+  top: 50%;
+  left: 10%;
+}
+
+/* 纵向十字线 */
+.detail-dial__crosshair-v {
+  position: absolute;
+  height: 80%;
+  width: 1rpx;
+  background-color: var(--color-line-primary);
+  left: 50%;
+  top: 10%;
+}
+
+/* 中心绿色圆点指示器（固定在中心，象征"已记录的水平位置"） */
+.detail-dial__dot {
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  background-color: var(--color-accent-green);
+  box-shadow: 0 0 12rpx rgba(0, 230, 118, 0.8);
+  position: relative;
+  z-index: 1;
+}
+
+/* 角度数值展示 */
+.detail-angles {
+  text-align: center;
+}
+
+.detail-angles__value {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 52rpx;
+  color: var(--color-text-accent);
+  margin-bottom: var(--spacing-xs);
+  letter-spacing: 2rpx;
+}
+
+.detail-angles__label {
+  display: block;
+  font-size: var(--font-size-tip);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 4rpx;
+}
+
+/* ============================================================
+   信息面板：时间、位置等
+   ============================================================ */
+
+.detail-info {
+  padding: var(--spacing-lg);
+  background-color: var(--color-bg-primary);
+  flex: 1;
+}
+
+.detail-info__row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: var(--spacing-md) 0;
+  border-bottom: 1rpx solid var(--color-line-secondary);
+}
+
+.detail-info__row--muted {
+  opacity: 0.5;
+}
+
+.detail-info__icon {
+  font-size: 32rpx;
+  margin-right: var(--spacing-md);
+  flex-shrink: 0;
+  margin-top: 4rpx;
+}
+
+.detail-info__body {
+  flex: 1;
+}
+
+.detail-info__label {
+  display: block;
+  font-size: var(--font-size-tip);
+  color: var(--color-text-secondary);
+  margin-bottom: 6rpx;
+}
+
+.detail-info__value {
+  display: block;
+  font-size: var(--font-size-label);
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+}
+
+.detail-info__value--muted {
+  color: var(--color-text-disabled);
+  font-style: italic;
+  font-family: var(--font-sans);
+}
+
+/* ============================================================
+   底部操作区
+   ============================================================ */
+
+.detail-footer {
+  padding: var(--spacing-lg);
+  background-color: var(--color-bg-secondary);
+  border-top: 1rpx solid var(--color-line-secondary);
+}
+
+/* 分享落地页：CTA按钮区 */
+.detail-footer__share-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.detail-footer__share-hint {
+  font-size: var(--font-size-tip);
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+/* 本地查看：提示文字 */
+.detail-footer__local-hint {
+  text-align: center;
+}
+
+.detail-footer__local-hint-text {
+  font-size: var(--font-size-tip);
+  color: var(--color-text-secondary);
+}
+
+/* ============================================================
+   通用按钮
+   ============================================================ */
+
+.detail-btn {
+  padding: var(--spacing-sm) var(--spacing-xxl);
+  border-radius: var(--radius-full);
+  text-align: center;
+}
+
+.detail-btn--primary {
+  background-color: var(--color-bg-tertiary);
+  border: 1rpx solid var(--color-accent-green);
+  box-shadow: var(--glow-green);
+}
+
+.detail-btn--hover {
+  opacity: 0.7;
+  transform: scale(0.97);
+}
+
+.detail-btn__text {
+  font-size: var(--font-size-label);
+  color: var(--color-text-accent);
+}

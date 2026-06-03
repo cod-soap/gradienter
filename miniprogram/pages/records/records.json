@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "我的记录",
+  "navigationBarBackgroundColor": "#1A1A2E",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#1A1A2E",
+  "usingComponents": {
+    "record-card": "/components/record-card/record-card"
+  }
+}

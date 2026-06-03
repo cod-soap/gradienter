@@ -1,0 +1,74 @@
+<!-- records.wxml - 我的记录页面模板 -->
+<!-- 列表展示所有角度记录，空状态显示引导文字 -->
+<view class="records-page">
+
+  <!-- ============================================================
+       记录列表：有记录时显示
+       ============================================================ -->
+  <scroll-view
+    wx:if="{{!isEmpty}}"
+    scroll-y
+    class="records-list"
+    enhanced
+    show-scrollbar="{{false}}"
+  >
+    <!-- 列表头部：记录总数 + 清空按钮 -->
+    <view class="records-header">
+      <view class="records-header__left">
+        <text class="records-header__count">共 {{records.length}} 条记录</text>
+        <text class="records-header__hint">点击「分享」可将记录发送给好友</text>
+      </view>
+      <view
+        class="records-header__clear-btn"
+        hover-class="records-header__clear-btn--hover"
+        hover-stay-time="100"
+        bind:tap="_onClearAll"
+      >
+        <text class="records-header__clear-text">清空</text>
+      </view>
+    </view>
+
+    <!-- 记录卡片列表 -->
+    <view class="records-body">
+      <record-card
+        wx:for="{{records}}"
+        wx:key="id"
+        record="{{item}}"
+        bind:share="_onRecordShare"
+        bind:delete="_onRecordDelete"
+      />
+    </view>
+
+    <!-- 底部安全区占位，防止最后一张卡片被底部边距遮挡 -->
+    <view class="records-footer-safe"></view>
+  </scroll-view>
+
+  <!-- ============================================================
+       空状态：无记录时显示
+       ============================================================ -->
+  <view wx:else class="records-empty">
+    <!-- 空状态图标（工业风圆盘图案） -->
+    <view class="records-empty__icon">
+      <view class="records-empty__dial">
+        <view class="records-empty__dial-inner">
+          <text class="records-empty__dial-text">○</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态文字 -->
+    <text class="records-empty__title">暂无测量记录</text>
+    <text class="records-empty__desc">去万向水平仪记录第一个测量角度吧</text>
+
+    <!-- 引导按钮：跳转到万向水平仪 -->
+    <view
+      class="records-empty__btn"
+      hover-class="records-empty__btn--hover"
+      hover-stay-time="150"
+      bind:tap="_goToUniversalLevel"
+    >
+      <text class="records-empty__btn-text">🧭 去记录角度</text>
+    </view>
+  </view>
+
+</view>

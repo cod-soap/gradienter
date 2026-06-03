@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "水平气泡尺",
+  "navigationBarBackgroundColor": "#1A1A2E",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#1A1A2E",
+  "usingComponents": {
+    "bubble-tube": "/components/bubble-tube/bubble-tube",
+    "calibrate-button": "/components/calibrate-button/calibrate-button",
+    "sensitivity-picker": "/components/sensitivity-picker/sensitivity-picker",
+    "angle-display": "/components/angle-display/angle-display"
+  }
+}
